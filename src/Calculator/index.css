@@ -1,0 +1,29 @@
+#input {
+	text-align: center;
+	height: 75px;
+	border: 0px solid black;
+}
+#topBar {
+	font-size: 26px;
+	line-height: 75px;
+	border: 2px solid black;
+}
+#middleControls .row .col-sm-12 {
+	border: 1px solid black;
+	font-size: 30px;
+	font-weight: bold;
+	height: 100px;
+	line-height: 100px;
+	text-align: center;
+	background-color: white;
+}
+
+#normal-buttons .row .col-sm-4 {
+	border: 1px solid black;
+	font-size: 25px;
+	font-weight: bold;
+	height: 75px;
+	line-height: 75px;
+	text-align: center;
+	background-color: white;
+}
