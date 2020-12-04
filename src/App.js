@@ -35,6 +35,7 @@ class App extends React.Component {
 
 	buttonClick = (e) => {
 		let value = e.target.dataset.value;
+		console.log(value);
 		if (value === 'Clear') this.setState({ input: '', output: '' });
 		else if (value === 'BS') {
 			try {
@@ -58,9 +59,22 @@ class App extends React.Component {
 			});
 		} else if (value === 'Save') {
 			let savedEquations = this.state.saved;
-			savedEquations.push({ title: '', equation: this.state.input });
+			savedEquations.push({
+				title: '',
+				equation: this.state.input.trim('').split(' ').join(''),
+			});
 			localStorage.setItem('SavedEquations', JSON.stringify(savedEquations));
 			this.setState({ saved: savedEquations, input: '', output: '' });
+		} else if (
+			value === '(' &&
+			this.state.input.length > 0 &&
+			this.state.input[this.state.input.length - 1] <= 9 &&
+			this.state.input[this.state.input.length - 1] >= 0
+		) {
+			this.setState({
+				input: this.state.input + '*' + value,
+				output: this.state.input + '*' + value,
+			});
 		} else {
 			try {
 				this.setState({
@@ -100,6 +114,16 @@ class App extends React.Component {
 					output: this.state.input.slice(0, this.state.input.length - 1),
 				});
 			}
+		} else if (
+			value === '(' &&
+			this.state.input.length > 0 &&
+			this.state.input[this.state.input.length - 1] <= 9 &&
+			this.state.input[this.state.input.length - 1] >= 0
+		) {
+			this.setState({
+				input: this.state.input + '*' + value,
+				output: this.state.input + '*' + value,
+			});
 		} else {
 			try {
 				this.setState({
@@ -123,12 +147,12 @@ class App extends React.Component {
 	};
 
 	componentDidMount() {
-		// this.setState({ saved: [] });
-		this.setState({
-			saved: JSON.parse(localStorage.getItem('SavedEquations'))
-				? JSON.parse(localStorage.getItem('SavedEquations'))
-				: [],
-		});
+		this.setState({ saved: [] });
+		// this.setState({
+		// 	saved: JSON.parse(localStorage.getItem('SavedEquations'))
+		// 		? JSON.parse(localStorage.getItem('SavedEquations'))
+		// 		: [],
+		// });
 	}
 
 	render() {

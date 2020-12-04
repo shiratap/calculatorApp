@@ -10,7 +10,7 @@ function SavedEquations(props) {
 	}
 
 	let [output, setOutput] = useState(evaluated);
-	let [equation, setEquation] = useState(props.equation.equation);
+	let [equation] = useState(props.equation.equation);
 
 	let recalculate = (e) => {
 		let i = 0;
@@ -25,7 +25,6 @@ function SavedEquations(props) {
 			} else evaluate.push(char);
 		});
 		evaluate = evaluate.join('');
-		console.log(evaluate);
 		try {
 			setOutput(eval(evaluate));
 		} catch (e) {
@@ -36,19 +35,30 @@ function SavedEquations(props) {
 	let ind = 0;
 	let formatEquation = equation.split('').map((char, iteration) => {
 		let splitted = evaluated.split('');
-
 		if (
 			(iteration > 0 &&
 				char.charCodeAt(0) >= 65 &&
 				char.charCodeAt(0) <= 90 &&
 				(splitted[iteration - 1] >= 0 || splitted[iteration - 1] <= 9)) ||
 			(iteration > 0 &&
-				char.charCodeAt(0) >= 65 &&
-				char.charCodeAt(0) <= 90 &&
-				(splitted[iteration - 1] >= 0 || splitted[iteration - 1] <= 9)) ||
-			(iteration > 0 &&
-				char === '(' &&
+				char.charCodeAt(0) >= 97 &&
+				char.charCodeAt(0) <= 122 &&
 				(splitted[iteration - 1] >= 0 || splitted[iteration - 1] <= 9))
+			// 	||
+			// (iteration > 0 &&
+			// 	char.charCodeAt(0) >= 65 &&
+			// 	char.charCodeAt(0) <= 90 &&
+			// 	((splitted[iteration - 1].charCodeAt(0) >= 65 &&
+			// 		splitted[iteration - 1].charCodeAt(0) <= 90) ||
+			// 		(splitted[iteration - 1].charCodeAt(0) >= 97 &&
+			// 			splitted[iteration - 1].charCodeAt(0) <= 122))) ||
+			// (iteration > 0 &&
+			// 	char.charCodeAt(0) >= 97 &&
+			// 	char.charCodeAt(0) <= 122 &&
+			// 	((splitted[iteration - 1].charCodeAt(0) >= 65 &&
+			// 		splitted[iteration - 1].charCodeAt(0) <= 90) ||
+			// 		(splitted[iteration - 1].charCodeAt(0) >= 97 &&
+			// 			splitted[iteration - 1].charCodeAt(0) <= 122)))
 		) {
 			splitted.splice(iteration + ind, 0, '*');
 			ind += 1;
