@@ -43,8 +43,11 @@ function SavedEquations(props) {
 				char.charCodeAt(0) <= 90 &&
 				(splitted[iteration - 1] >= 0 || splitted[iteration - 1] <= 9)) ||
 			(iteration > 0 &&
-				char.charCodeAt(0) >= 97 &&
-				char.charCodeAt(0) <= 122 &&
+				char.charCodeAt(0) >= 65 &&
+				char.charCodeAt(0) <= 90 &&
+				(splitted[iteration - 1] >= 0 || splitted[iteration - 1] <= 9)) ||
+			(iteration > 0 &&
+				char === '(' &&
 				(splitted[iteration - 1] >= 0 || splitted[iteration - 1] <= 9))
 		) {
 			splitted.splice(iteration + ind, 0, '*');
