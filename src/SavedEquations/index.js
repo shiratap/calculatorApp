@@ -20,12 +20,12 @@ function SavedEquations(props) {
 				(char.charCodeAt(0) >= 65 && char.charCodeAt(0) <= 90) ||
 				(char.charCodeAt(0) >= 97 && char.charCodeAt(0) <= 122)
 			) {
-				console.log(i);
 				evaluate.push(e.target.parentElement.children[i].value);
 				i = i + 1;
 			} else evaluate.push(char);
 		});
 		evaluate = evaluate.join('');
+		console.log(evaluate);
 		try {
 			setOutput(eval(evaluate));
 		} catch (e) {
@@ -33,7 +33,24 @@ function SavedEquations(props) {
 		}
 	};
 
-	let formatEquation = equation.split('').map((char) => {
+	let ind = 0;
+	let formatEquation = equation.split('').map((char, iteration) => {
+		let splitted = evaluated.split('');
+
+		if (
+			(iteration > 0 &&
+				char.charCodeAt(0) >= 65 &&
+				char.charCodeAt(0) <= 90 &&
+				(splitted[iteration - 1] >= 0 || splitted[iteration - 1] <= 9)) ||
+			(iteration > 0 &&
+				char.charCodeAt(0) >= 97 &&
+				char.charCodeAt(0) <= 122 &&
+				(splitted[iteration - 1] >= 0 || splitted[iteration - 1] <= 9))
+		) {
+			splitted.splice(iteration + ind, 0, '*');
+			ind += 1;
+			evaluated = splitted.join('');
+		}
 		if (
 			(char.charCodeAt(0) >= 65 && char.charCodeAt(0) <= 90) ||
 			(char.charCodeAt(0) >= 97 && char.charCodeAt(0) <= 122)
@@ -51,7 +68,7 @@ function SavedEquations(props) {
 	});
 
 	return (
-		<div className='jumbotron jumbotron-fluid'>
+		<div className='jumbotron jumbotron-fluid' key={props.key}>
 			<input
 				type='text'
 				data-index={props.index}

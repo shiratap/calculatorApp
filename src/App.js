@@ -17,6 +17,7 @@ class App extends React.Component {
 		this.deleteOne = this.deleteOne.bind(this);
 		this.buttonClick = this.buttonClick.bind(this);
 		this.keyPress = this.keyPress.bind(this);
+		this.changeTitle = this.changeTitle.bind(this);
 	}
 
 	deleteAll = () => {
@@ -27,8 +28,9 @@ class App extends React.Component {
 	deleteOne = (e) => {
 		let slicedSaved = this.state.saved;
 		slicedSaved.splice(e.target.dataset.value, 1);
-		localStorage.setItem('SavedEquations', JSON.stringify(slicedSaved));
 		this.setState({ saved: slicedSaved });
+		localStorage.setItem('SavedEquations', JSON.stringify(slicedSaved));
+		window.location.reload(false);
 	};
 
 	buttonClick = (e) => {
