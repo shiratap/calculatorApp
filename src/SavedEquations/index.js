@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 function SavedEquations(props) {
 	let evaluated;
 	try {
-		evaluated = eval(props.equation.equation);
+		evaluated = eval(props.equation.equation).toString();
 	} catch (e) {
 		evaluated = props.equation.equation;
 	}
@@ -34,6 +34,7 @@ function SavedEquations(props) {
 
 	let ind = 0;
 	let formatEquation = equation.split('').map((char, iteration) => {
+		console.log(evaluated);
 		let splitted = evaluated.split('');
 		if (
 			(iteration > 0 &&

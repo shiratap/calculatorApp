@@ -35,7 +35,6 @@ class App extends React.Component {
 
 	buttonClick = (e) => {
 		let value = e.target.dataset.value;
-		console.log(value);
 		if (value === 'Clear') this.setState({ input: '', output: '' });
 		else if (value === 'BS') {
 			try {
@@ -147,12 +146,12 @@ class App extends React.Component {
 	};
 
 	componentDidMount() {
-		this.setState({ saved: [] });
-		// this.setState({
-		// 	saved: JSON.parse(localStorage.getItem('SavedEquations'))
-		// 		? JSON.parse(localStorage.getItem('SavedEquations'))
-		// 		: [],
-		// });
+		// this.setState({ saved: [] });
+		this.setState({
+			saved: JSON.parse(localStorage.getItem('SavedEquations'))
+				? JSON.parse(localStorage.getItem('SavedEquations'))
+				: [],
+		});
 	}
 
 	render() {

@@ -4,25 +4,21 @@ function MiddleControls(props) {
 			<div className='row'>
 				<button
 					onClick={props.handleClick}
-					className='col-sm-12'
+					className='col-12'
 					data-value='Clear'
 				>
 					Clear
 				</button>
 			</div>
 			<div className='row'>
-				<button
-					onClick={props.handleClick}
-					className='col-sm-12'
-					data-value='BS'
-				>
+				<button onClick={props.handleClick} className='col-12' data-value='BS'>
 					BackSpace
 				</button>
 			</div>
 			<div className='row'>
 				<button
 					onClick={props.handleClick}
-					className='col-sm-12'
+					className='col-12'
 					data-value='Save'
 				>
 					Save
