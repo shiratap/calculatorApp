@@ -11,7 +11,9 @@ function Input(props) {
 			/>
 			<div className='col-1'>=</div>
 			<div id='results' className='col-1'>
-				{props.output}
+				{!props.output.includes('undefined')
+					? props.output.replace('undefined', '')
+					: ''}
 			</div>
 		</>
 	);
