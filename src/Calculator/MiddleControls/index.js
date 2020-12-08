@@ -12,7 +12,7 @@ function MiddleControls(props) {
 			</div>
 			<div className='row'>
 				<button onClick={props.handleClick} className='col-12' data-value='BS'>
-					BackSpace
+					Back
 				</button>
 			</div>
 			<div className='row'>

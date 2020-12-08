@@ -1,9 +1,42 @@
-.placeholderInput {
-	height: 26px;
-	width: 40px;
-	font-size: 15px;
+.clear,
+.deleteOne {
+	display: flex;
+	font-size: 20px;
+	margin: auto;
+	margin-top: 4px;
+	padding-right: 10px;
+	width: 100%;
 }
-
+.equationItems {
+	border-bottom: 1px solid black;
+	height: 50px;
+	margin: auto;
+	width: 90%;
+}
 .jumbotron {
-	margin-bottom: 10px;
+	padding-bottom: 20px;
+	padding-top: 20px;
+	margin-bottom: 30px;
+}
+.lead {
+	font-size: 30px;
+	justify-content: center;
+	margin-bottom: 0px;
+	margin-top: 5px;
+	text-align: center;
+}
+.placeholderInput {
+	font-size: 24px;
+	height: 36px;
+	width: 60px;
+}
+.title {
+	border: 0px solid black;
+	display: flex;
+	font-size: 20px;
+	height: 40px;
+	margin: auto;
+	margin-bottom: 20px;
+	text-align: center;
+	width: 100%;
 }

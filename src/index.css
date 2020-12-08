@@ -2,6 +2,12 @@ html,
 body {
 	height: 100%;
 }
+div {
+	overflow: hidden;
+}
+button {
+	overflow: hidden;
+}
 
 body {
 	background-color: #eeee;
