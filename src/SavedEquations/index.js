@@ -45,7 +45,7 @@ function SavedEquations(props) {
 		//Join each character and try to evaluate. Otherwise, set output to the string.
 		evaluate = evaluate.join('');
 		try {
-			setOutput(eval(evaluate));
+			setOutput(eval(evaluate).toString());
 		} catch (e) {
 			setOutput(props.equation.equation);
 		}
