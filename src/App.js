@@ -37,16 +37,25 @@ class App extends React.Component {
 		let value = e.target.dataset.value;
 		if (value === 'Clear') this.setState({ input: '', output: '' });
 		else if (value === 'BS') {
-			try {
-				this.setState({
-					input: this.state.input.slice(0, this.state.input.length - 1),
-					output: eval(this.state.input.slice(0, this.state.input.length - 1)),
-				});
-			} catch (err) {
+			if (this.state.input.includes('n')) {
 				this.setState({
 					input: this.state.input.slice(0, this.state.input.length - 1),
 					output: this.state.input.slice(0, this.state.input.length - 1),
 				});
+			} else {
+				try {
+					this.setState({
+						input: this.state.input.slice(0, this.state.input.length - 1),
+						output: eval(
+							this.state.input.slice(0, this.state.input.length - 1)
+						),
+					});
+				} catch (err) {
+					this.setState({
+						input: this.state.input.slice(0, this.state.input.length - 1),
+						output: this.state.input.slice(0, this.state.input.length - 1),
+					});
+				}
 			}
 		} else if (value === 'Placeholder') {
 			this.setState({
@@ -75,16 +84,23 @@ class App extends React.Component {
 				output: this.state.input + '*' + value,
 			});
 		} else {
-			try {
-				this.setState({
-					input: this.state.input + value,
-					output: eval(this.state.input + value),
-				});
-			} catch (err) {
+			if (this.state.input.includes('n') || value === 'n') {
 				this.setState({
 					input: this.state.input + value,
 					output: this.state.output + value,
 				});
+			} else {
+				try {
+					this.setState({
+						input: this.state.input + value,
+						output: eval(this.state.input + value),
+					});
+				} catch (err) {
+					this.setState({
+						input: this.state.input + value,
+						output: this.state.output + value,
+					});
+				}
 			}
 		}
 	};
@@ -98,20 +114,33 @@ class App extends React.Component {
 			value === 'Shift' ||
 			value === 'Insert' ||
 			value === 'Tab' ||
-			value === 'CapsLock'
+			value === 'CapsLock' ||
+			value === 'ArrowRight' ||
+			value === 'ArrowLeft' ||
+			value === 'ArrowUp' ||
+			value === 'ArrowDown'
 		) {
 		} else if (value === 'Delete') this.setState({ input: '', output: '' });
 		else if (value === 'Backspace') {
-			try {
-				this.setState({
-					input: this.state.input.slice(0, this.state.input.length - 1),
-					output: eval(this.state.input.slice(0, this.state.input.length - 1)),
-				});
-			} catch (err) {
+			if (this.state.input.includes('n')) {
 				this.setState({
 					input: this.state.input.slice(0, this.state.input.length - 1),
 					output: this.state.input.slice(0, this.state.input.length - 1),
 				});
+			} else {
+				try {
+					this.setState({
+						input: this.state.input.slice(0, this.state.input.length - 1),
+						output: eval(
+							this.state.input.slice(0, this.state.input.length - 1)
+						),
+					});
+				} catch (err) {
+					this.setState({
+						input: this.state.input.slice(0, this.state.input.length - 1),
+						output: this.state.input.slice(0, this.state.input.length - 1),
+					});
+				}
 			}
 		} else if (
 			value === '(' &&
@@ -124,16 +153,30 @@ class App extends React.Component {
 				output: this.state.input + '*' + value,
 			});
 		} else {
-			try {
-				this.setState({
-					input: this.state.input + value,
-					output: eval(this.state.input + value),
-				});
-			} catch (err) {
+			if (this.state.input.includes('n') || value == 'n') {
 				this.setState({
 					input: this.state.input + value,
 					output: this.state.output + value,
 				});
+			} else {
+				if (this.state.input.includes('n') || value === 'n') {
+					this.setState({
+						input: this.state.input + value,
+						output: this.state.output + value,
+					});
+				} else {
+					try {
+						this.setState({
+							input: this.state.input + value,
+							output: eval(this.state.input + value),
+						});
+					} catch (err) {
+						this.setState({
+							input: this.state.input + value,
+							output: this.state.output + value,
+						});
+					}
+				}
 			}
 		}
 	};
@@ -146,7 +189,6 @@ class App extends React.Component {
 	};
 
 	componentDidMount() {
-		// this.setState({ saved: [] });
 		this.setState({
 			saved: JSON.parse(localStorage.getItem('SavedEquations'))
 				? JSON.parse(localStorage.getItem('SavedEquations'))

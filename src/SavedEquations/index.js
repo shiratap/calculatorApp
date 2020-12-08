@@ -4,10 +4,14 @@ import React, { useState } from 'react';
 function SavedEquations(props) {
 	// Evaluated represents the right side equation
 	let evaluated;
-	try {
-		evaluated = eval(props.equation.equation).toString();
-	} catch (e) {
+	if (props.equation.equation.includes('n')) {
 		evaluated = props.equation.equation;
+	} else {
+		try {
+			evaluated = eval(props.equation.equation).toString();
+		} catch (e) {
+			evaluated = props.equation.equation;
+		}
 	}
 
 	//Output is the right side equation. Equation is the left side. State is defined after attempted output eval
@@ -44,10 +48,14 @@ function SavedEquations(props) {
 
 		//Join each character and try to evaluate. Otherwise, set output to the string.
 		evaluate = evaluate.join('');
-		try {
-			setOutput(eval(evaluate).toString());
-		} catch (e) {
+		if (evaluate.includes('n')) {
 			setOutput(props.equation.equation);
+		} else {
+			try {
+				setOutput(eval(evaluate).toString());
+			} catch (e) {
+				setOutput(props.equation.equation);
+			}
 		}
 	};
 
@@ -62,10 +70,14 @@ function SavedEquations(props) {
 			input.value = '';
 		});
 		let normalOutput;
-		try {
-			normalOutput = eval(props.equation.equation).toString();
-		} catch (e) {
+		if (props.equation.equation.includes('n')) {
 			normalOutput = props.equation.equation;
+		} else {
+			try {
+				normalOutput = eval(props.equation.equation).toString();
+			} catch (e) {
+				normalOutput = props.equation.equation;
+			}
 		}
 		setOutput((output = normalOutput));
 	};

@@ -3,6 +3,9 @@
 	height: 75px;
 	border: 0px solid black;
 }
+#input:focus {
+	outline: none;
+}
 #topBar {
 	font-size: 26px;
 	line-height: 75px;
