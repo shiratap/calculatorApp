@@ -18,13 +18,13 @@ function Calculator(props) {
 				/>
 			</div>
 			<div className='row'>
-				<div className='col-sm-5' id='normal-buttons'>
+				<div className='col-sm-5 normalButtons'>
 					<LeftControls handleClick={props.buttonClick} />
 				</div>
 				<div className='col-sm-2' id='middleControls'>
 					<MiddleControls handleClick={props.buttonClick} />
 				</div>
-				<div className='col-sm-5' id='normal-buttons'>
+				<div className='col-sm-5 normalButtons'>
 					<RightControls handleClick={props.buttonClick} />
 				</div>
 			</div>

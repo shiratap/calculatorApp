@@ -209,10 +209,10 @@ class App extends React.Component {
 					/>
 
 					<div className='row' id='savedSection'>
-						<div className='col-sm-6'>
+						<div className='col-6'>
 							<h1>Saved Equations</h1>
 						</div>
-						<div className='col-sm-6'>
+						<div className='col-6'>
 							<button onClick={this.deleteAll}>Delete all saved</button>
 						</div>
 					</div>

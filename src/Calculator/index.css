@@ -22,7 +22,7 @@
 	background-color: white;
 }
 
-#normal-buttons .row .col-4 {
+.normalButtons .row .col-4 {
 	border: 1px solid black;
 	font-size: 25px;
 	font-weight: bold;
@@ -33,4 +33,11 @@
 }
 #results {
 	overflow: hidden;
+}
+
+@media (max-width: 575px) {
+	div .normalButtons,
+	#back {
+		display: none;
+	}
 }
