@@ -2,6 +2,7 @@ import './index.css';
 import React, { useState } from 'react';
 
 function SavedEquations(props) {
+	// Evaluated represents the right side equation
 	let evaluated;
 	try {
 		evaluated = eval(props.equation.equation).toString();
@@ -9,21 +10,39 @@ function SavedEquations(props) {
 		evaluated = props.equation.equation;
 	}
 
+	//Output is the right side equation. Equation is the left side. State is defined after attempted output eval
 	let [output, setOutput] = useState(evaluated);
 	let [equation] = useState(props.equation.equation);
 
+	//Recalculate runs on input field change
 	let recalculate = (e) => {
+		//increment variable needed outside of the forEach to increment on each new child variable
 		let i = 0;
+
+		//evaluate holds valid characters for the final eval method
 		let evaluate = [];
+
+		//Evaluated is the right side equation string. Check to see each character if it's a placeholder variable.
 		evaluated.split('').forEach((char) => {
 			if (
 				(char.charCodeAt(0) >= 65 && char.charCodeAt(0) <= 90) ||
 				(char.charCodeAt(0) >= 97 && char.charCodeAt(0) <= 122)
 			) {
-				evaluate.push(e.target.parentElement.children[i].value);
-				i = i + 1;
-			} else evaluate.push(char);
+				//Find the next placeholder and add it to the equation if it's an integer value
+				if (
+					Number.isInteger(parseInt(e.target.parentElement.children[i].value))
+				) {
+					evaluate.push(e.target.parentElement.children[i].value);
+					i = i + 1;
+				} else {
+					//Otherwise, keep placeholder variable
+					evaluate.push('a');
+				}
+			} //If not, just add the character
+			else evaluate.push(char);
 		});
+
+		//Join each character and try to evaluate. Otherwise, set output to the string.
 		evaluate = evaluate.join('');
 		try {
 			setOutput(eval(evaluate));
@@ -34,7 +53,6 @@ function SavedEquations(props) {
 
 	let ind = 0;
 	let formatEquation = equation.split('').map((char, iteration) => {
-		console.log(evaluated);
 		let splitted = evaluated.split('');
 		if (
 			(iteration > 0 &&
@@ -45,21 +63,6 @@ function SavedEquations(props) {
 				char.charCodeAt(0) >= 97 &&
 				char.charCodeAt(0) <= 122 &&
 				(splitted[iteration - 1] >= 0 || splitted[iteration - 1] <= 9))
-			// 	||
-			// (iteration > 0 &&
-			// 	char.charCodeAt(0) >= 65 &&
-			// 	char.charCodeAt(0) <= 90 &&
-			// 	((splitted[iteration - 1].charCodeAt(0) >= 65 &&
-			// 		splitted[iteration - 1].charCodeAt(0) <= 90) ||
-			// 		(splitted[iteration - 1].charCodeAt(0) >= 97 &&
-			// 			splitted[iteration - 1].charCodeAt(0) <= 122))) ||
-			// (iteration > 0 &&
-			// 	char.charCodeAt(0) >= 97 &&
-			// 	char.charCodeAt(0) <= 122 &&
-			// 	((splitted[iteration - 1].charCodeAt(0) >= 65 &&
-			// 		splitted[iteration - 1].charCodeAt(0) <= 90) ||
-			// 		(splitted[iteration - 1].charCodeAt(0) >= 97 &&
-			// 			splitted[iteration - 1].charCodeAt(0) <= 122)))
 		) {
 			splitted.splice(iteration + ind, 0, '*');
 			ind += 1;
