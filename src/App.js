@@ -40,26 +40,20 @@ class App extends React.Component {
 			if (this.state.input.includes('n')) {
 				this.setState({
 					input: this.state.input.slice(0, this.state.input.length - 1),
-					output: this.state.input
-						.replace('undefined', '')
-						.slice(0, this.state.input.length - 1),
+					output: this.state.input.slice(0, this.state.input.length - 1),
 				});
 			} else {
 				try {
 					this.setState({
 						input: this.state.input.slice(0, this.state.input.length - 1),
 						output: eval(
-							this.state.input
-								.replace('undefined', '')
-								.slice(0, this.state.input.length - 1)
+							this.state.input.slice(0, this.state.input.length - 1)
 						),
 					});
 				} catch (err) {
 					this.setState({
 						input: this.state.input.slice(0, this.state.input.length - 1),
-						output: this.state.input
-							.replace('undefined', '')
-							.slice(0, this.state.input.length - 1),
+						output: this.state.input.slice(0, this.state.input.length - 1),
 					});
 				}
 			}
@@ -93,18 +87,18 @@ class App extends React.Component {
 			if (this.state.input.includes('n') || value === 'n') {
 				this.setState({
 					input: this.state.input + value,
-					output: this.state.output.replace('undefined', '') + value,
+					output: this.state.output + value,
 				});
 			} else {
 				try {
 					this.setState({
 						input: this.state.input + value,
-						output: eval(this.state.input.replace('undefined', '') + value),
+						output: eval(this.state.input + value),
 					});
 				} catch (err) {
 					this.setState({
 						input: this.state.input + value,
-						output: this.state.output.replace('undefined', '') + value,
+						output: this.state.output + value,
 					});
 				}
 			}
@@ -124,33 +118,28 @@ class App extends React.Component {
 			value === 'ArrowRight' ||
 			value === 'ArrowLeft' ||
 			value === 'ArrowUp' ||
-			value === 'ArrowDown'
+			value === 'ArrowDown' ||
+			value === 'Escape'
 		) {
 		} else if (value === 'Delete') this.setState({ input: '', output: '' });
 		else if (value === 'Backspace') {
 			if (this.state.input.includes('n')) {
 				this.setState({
 					input: this.state.input.slice(0, this.state.input.length - 1),
-					output: this.state.input
-						.replace('undefined', '')
-						.slice(0, this.state.input.length - 1),
+					output: this.state.input.slice(0, this.state.input.length - 1),
 				});
 			} else {
 				try {
 					this.setState({
 						input: this.state.input.slice(0, this.state.input.length - 1),
 						output: eval(
-							this.state.input
-								.replace('undefined', '')
-								.slice(0, this.state.input.length - 1)
+							this.state.input.slice(0, this.state.input.length - 1)
 						),
 					});
 				} catch (err) {
 					this.setState({
 						input: this.state.input.slice(0, this.state.input.length - 1),
-						output: this.state.input
-							.replace('undefined', '')
-							.slice(0, this.state.input.length - 1),
+						output: this.state.input.slice(0, this.state.input.length - 1),
 					});
 				}
 			}

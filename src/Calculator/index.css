@@ -2,6 +2,7 @@
 	text-align: center;
 	height: 75px;
 	border: 0px solid black;
+	overflow: hidden;
 }
 #input:focus {
 	outline: none;
@@ -29,4 +30,7 @@
 	line-height: 75px;
 	text-align: center;
 	background-color: white;
+}
+#results {
+	overflow: hidden;
 }

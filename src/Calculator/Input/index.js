@@ -10,7 +10,7 @@ function Input(props) {
 				value={props.input}
 			/>
 			<div className='col-1'>=</div>
-			<div id='results' className='col-1'>
+			<div id='results' className='col-3'>
 				{!props.output.includes('undefined')
 					? props.output.replace('undefined', '')
 					: ''}
