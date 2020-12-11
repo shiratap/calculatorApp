@@ -5,6 +5,10 @@ import LeftControls from './LeftControls';
 import MiddleControls from './MiddleControls';
 import RightControls from './RightControls';
 
+/*
+	Calculator combines the top bar, left/middle/right controls. Passes the correct props from the main component into the correct subcomponents.
+*/
+
 function Calculator(props) {
 	return (
 		<>

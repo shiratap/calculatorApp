@@ -1,3 +1,6 @@
+/*
+	Input is more accurately, 'TopBar'. This holds the input section and output section. 
+*/
 function Input(props) {
 	return (
 		<>

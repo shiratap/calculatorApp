@@ -1,3 +1,6 @@
+/*	
+	RightControls are all the operation buttons
+*/
 function RightControls(props) {
 	return (
 		<>

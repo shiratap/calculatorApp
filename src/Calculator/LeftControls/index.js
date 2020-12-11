@@ -1,3 +1,6 @@
+/*
+	LeftControls pertain to numbers and the placeholder button.
+*/
 function LeftControls(props) {
 	return (
 		<>

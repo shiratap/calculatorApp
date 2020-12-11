@@ -4,6 +4,14 @@ import Calculator from './Calculator';
 import SavedEquations from './SavedEquations';
 
 class App extends React.Component {
+	/*
+		State runs this application, and I need it to update multiple portions of this app. 
+			input: Is the left side equation. Updates on key input. Holds raw values from keyPress or buttonPress
+			ouptut: right side equation. Updates on key input and tries to evaluate input on keyPress or buttonPress
+			saved: stores all equations. A copy is kept in localstorage, but is needed in state for mapping purposes
+			placeholder: Just a list of placeholder variables that's iterated through when PH is pressed
+			increment: increments for a new placeholder
+	*/
 	constructor() {
 		super();
 		this.state = {
@@ -19,12 +27,18 @@ class App extends React.Component {
 		this.keyPress = this.keyPress.bind(this);
 		this.changeTitle = this.changeTitle.bind(this);
 	}
-
+	/*
+		deleteAll all fires on the delete all saved button press. Deletes everything from the saved state and localstorage data
+	*/
 	deleteAll = () => {
 		localStorage.clear();
 		this.setState({ saved: [] });
 	};
 
+	/*
+		deleteOne fires on saved equation component button press. Deletes that specific index in the array and page refreshes to load the correct data.
+		Unfortunately, I have to page refresh in order to see the right index sliced. Otherwise, the map function renders the wrong components after delete, even though state is updated in the right way. I don't know why.
+	*/
 	deleteOne = (e) => {
 		let slicedSaved = this.state.saved;
 		slicedSaved.splice(e.target.dataset.value, 1);
@@ -33,6 +47,9 @@ class App extends React.Component {
 		window.location.reload(false);
 	};
 
+	/*
+		ButtonClick fires on button press for any of the calculator buttons. References the data-value property of the buttons to figure out what to do next. 
+	*/
 	buttonClick = (e) => {
 		let value = e.target.dataset.value;
 		if (value === 'Clear') this.setState({ input: '', output: '' });
@@ -105,6 +122,9 @@ class App extends React.Component {
 		}
 	};
 
+	/*
+		KeyPress fires on keydown. Has the same general logic as ButtonClick, but with keyboard exceptions. In the works to be integrated into one event handler.
+	*/
 	keyPress = (e) => {
 		let value = e.key;
 		if (
@@ -182,6 +202,9 @@ class App extends React.Component {
 		}
 	};
 
+	/*
+		changeTitle fires on input value change, changing the specific equation object title property.
+	*/
 	changeTitle = (e) => {
 		let savedCopy = this.state.saved;
 		savedCopy[e.target.dataset.index].title = e.target.value;
@@ -189,6 +212,9 @@ class App extends React.Component {
 		localStorage.setItem('SavedEquations', JSON.stringify(savedCopy));
 	};
 
+	/*
+		componentDidMount runs once on page load. This updates the saved state array if existing localstorage data can be found under the savedEquations property. If not, start with an empty saved array.
+	*/
 	componentDidMount() {
 		this.setState({
 			saved: JSON.parse(localStorage.getItem('SavedEquations'))
@@ -201,6 +227,7 @@ class App extends React.Component {
 		return (
 			<>
 				<div className='container'>
+					{/* The full calculator component */}
 					<Calculator
 						buttonClick={this.buttonClick}
 						input={this.state.input}
@@ -216,6 +243,7 @@ class App extends React.Component {
 							<button onClick={this.deleteAll}>Delete all saved</button>
 						</div>
 					</div>
+					{/* This renders a component for each equation */}
 					{this.state.saved.map((equation, index) => {
 						return (
 							<SavedEquations

@@ -1,3 +1,6 @@
+/*
+	MiddleControls are unique input manipulating buttons. You can save, clear, or backspace from the input
+*/
 function MiddleControls(props) {
 	return (
 		<>
